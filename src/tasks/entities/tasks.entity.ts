@@ -13,7 +13,7 @@ export class Task {
   @Column()
   title: string;
   @Column({ type: 'simple-enum' })
-  status: TaskStatus = TaskStatus.Completed;
+  status: TaskStatus = TaskStatus.Incomplete;
 
   constructor(
     props: {
