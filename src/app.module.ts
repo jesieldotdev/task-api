@@ -1,10 +1,10 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TaskModule } from './task/tasks.module';
+import { TaskModule } from './tasks/tasks.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Task } from './task/entities/tasks.entity';
+import { Task } from './tasks/entities/tasks.entity';
 
 @Module({
   imports: [
