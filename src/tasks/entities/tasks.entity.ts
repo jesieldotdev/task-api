@@ -12,8 +12,8 @@ export class Task {
   id: string;
   @Column()
   title: string;
-  @Column({ type: 'simple-enum' })
-  status: TaskStatus = TaskStatus.Incomplete;
+  @Column({ type: 'enum', enum: TaskStatus, default: TaskStatus.Incomplete })
+  status: TaskStatus;
 
   constructor(
     props: {
