@@ -14,6 +14,8 @@ export class Task {
   title: string;
   @Column({ type: 'enum', enum: TaskStatus, default: TaskStatus.Incomplete })
   status: TaskStatus;
+  @Column({ type: 'timestamp', nullable: true })
+  createdAt: Date;
 
   constructor(
     props: {

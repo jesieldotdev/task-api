@@ -17,6 +17,9 @@ export class CreateTaskUseCase {
     if (input.status) {
       task.status = TaskStatus.Completed;
     }
+    if (input.createdAt) {
+      task.createdAt = input.createdAt;
+    }
     // project.started_at = new Date();
     // return this.serviceRepo.save(service);
     await this.taskRepo.create(task);
