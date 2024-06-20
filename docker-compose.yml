@@ -1,5 +1,5 @@
 services:
-  postgres:
+  db-postgres:
       image: postgres
       restart: always
       environment: 
@@ -21,6 +21,6 @@ services:
       ports:
         - "3010:3000"
       depends_on:
-        - postgres
+        - db-postgres
       env_file:
         - .env
