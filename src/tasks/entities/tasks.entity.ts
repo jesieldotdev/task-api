@@ -22,6 +22,7 @@ export class Task {
   constructor(
     props: {
       title: string;
+      author: string;
     },
     id?: string,
   ) {
