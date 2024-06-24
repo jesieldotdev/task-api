@@ -17,6 +17,9 @@ export class CreateTaskUseCase {
     if (input.status) {
       task.status = TaskStatus.Completed;
     }
+    if (input.author) {
+      task.author = input.author;
+    }
     if (input.createdAt) {
       task.createdAt = input.createdAt;
     }
