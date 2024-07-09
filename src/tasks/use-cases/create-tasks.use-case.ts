@@ -13,12 +13,23 @@ export class CreateTaskUseCase {
   async execute(input: CreateTaskDto) {
     const task = new Task(input);
 
+    if (input.tags) {
+      task.tags = input.tags;
+    }
+
     if (input.status) {
-      task.status = TaskStatus.Completed;
+      task.status = TaskStatus.Incomplete;
     }
     if (input.author) {
       task.author = input.author;
     }
+    if (input.startDate) {
+      task.startDate = input.startDate;
+    }
+    if (input.endDate) {
+      task.endDate = input.endDate;
+    }
+
     if (input.createdAt) {
       task.createdAt = input.createdAt;
     }
