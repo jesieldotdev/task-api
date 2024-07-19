@@ -19,7 +19,7 @@ services:
 
   app:
     build: .
-    command: yarn start:dev
+    command: yarn start:prod
     ports:
       - "3010:3000"
     depends_on:
