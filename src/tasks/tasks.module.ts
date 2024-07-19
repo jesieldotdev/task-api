@@ -8,6 +8,7 @@ import { TaskTypeOrmRepository } from './tasks.repository';
 import { UpdateTaskUseCase } from './use-cases/update-task.use-case';
 import { FindOneTaskUseCase } from './use-cases/find-one-task.use-case';
 import { RemoveTaskUseCase } from './use-cases/remove-task.use-case';
+import { FindAllTasksByAuthorUseCase } from './use-cases/find-all-by-user.use-case';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Task])],
@@ -19,6 +20,7 @@ import { RemoveTaskUseCase } from './use-cases/remove-task.use-case';
     TaskTypeOrmRepository,
     UpdateTaskUseCase,
     RemoveTaskUseCase,
+    FindAllTasksByAuthorUseCase,
     {
       provide: 'ITaskRepository',
       useExisting: TaskTypeOrmRepository,

@@ -5,7 +5,7 @@ import { ITaskRepository } from '../tasks.repository';
 export class FindAllTasksUseCase {
   constructor(
     @Inject('ITaskRepository')
-    private readonly taskRepo: ITaskRepository, //Repository em memoria
+    private readonly taskRepo: ITaskRepository,
   ) {}
 
   async execute() {

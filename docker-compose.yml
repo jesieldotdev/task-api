@@ -1,26 +1,31 @@
+version: '3'
+
 services:
   db-postgres:
-      image: postgres
-      restart: always
-      environment: 
-        - POSTGRES_USER=postgres
-        - POSTGRES_PASSWORD=postgres
-      logging:
-        options:
-          max-size: 10m
-          max-file: '3'
-      ports:
-        - '5435:5432'
-      volumes:
-        - ./postgres-data:/var/lib/postgresql/data
-        - ./create_db.sql:/docker-entrypoint-initdb.d/create_db.sql
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    logging:
+      options:
+        max-size: 10m
+        max-file: '3'
+    ports:
+      - '5435:5432'
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+      - ./create_db.sql:/docker-entrypoint-initdb.d/create_db.sql
 
   app:
-      build: .
-      command: yarn start:prod
-      ports:
-        - "3010:3000"
-      depends_on:
-        - db-postgres
-      env_file:
-        - .env
+    build: .
+    command: yarn start:dev
+    ports:
+      - "3010:3000"
+    depends_on:
+      - db-postgres
+    env_file:
+      - .env
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules

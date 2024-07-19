@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { CreateTaskUseCase } from './use-cases/create-tasks.use-case';
@@ -14,12 +15,16 @@ import { UpdateTaskDto } from './dto/update-task.dto';
 import { UpdateTaskUseCase } from './use-cases/update-task.use-case';
 import { FindOneTaskUseCase } from './use-cases/find-one-task.use-case';
 import { RemoveTaskUseCase } from './use-cases/remove-task.use-case';
+import { ApiKeyGuard } from '../guards/api-key.guard';
+import { FindAllTasksByAuthorUseCase } from './use-cases/find-all-by-user.use-case';
 
 @Controller('tasks')
+@UseGuards(ApiKeyGuard)
 export class TasksController {
   constructor(
     private readonly createTaskUseCase: CreateTaskUseCase,
     private readonly findAllTasksUseCase: FindAllTasksUseCase,
+    private readonly findAllTasksByAuthorUseCase: FindAllTasksByAuthorUseCase,
     private readonly findOneTaskUseCase: FindOneTaskUseCase,
     private readonly updateTaskUseCase: UpdateTaskUseCase,
     private readonly removeTaskUseCase: RemoveTaskUseCase,
@@ -32,6 +37,10 @@ export class TasksController {
   @Get()
   findAll() {
     return this.findAllTasksUseCase.execute();
+  }
+  @Get('user/:email')
+  findAllByAuthor(@Param('email') email: string) {
+    return this.findAllTasksByAuthorUseCase.execute(email);
   }
 
   @Get(':id')

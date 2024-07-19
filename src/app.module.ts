@@ -5,12 +5,7 @@ import { TaskModule } from './tasks/tasks.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Task } from './tasks/entities/tasks.entity';
-
-console.log('DB_HOST:', process.env.DB_HOST);
-console.log('DB_PORT:', process.env.DB_PORT);
-console.log('DB_USERNAME:', process.env.DB_USERNAME);
-console.log('DB_PASSWORD:', process.env.DB_PASSWORD);
-console.log('DB_DATABASE:', process.env.DB_DATABASE);
+import { ApiKeyGuard } from './guards/api-key.guard';
 
 @Module({
   imports: [
@@ -31,7 +26,7 @@ console.log('DB_DATABASE:', process.env.DB_DATABASE);
     TaskModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, ApiKeyGuard],
 })
 export class AppModule implements OnModuleInit {
   constructor(private configService: ConfigService) {}

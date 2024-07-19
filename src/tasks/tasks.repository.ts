@@ -8,6 +8,7 @@ export interface ITaskRepository {
   remove(id: string): Promise<void>;
   findAll(): Promise<Task[]>;
   findById(id: string): Promise<Task>;
+  findAllByAuthor(email: string): Promise<Task>;
 }
 
 @Injectable()
@@ -32,7 +33,12 @@ export class TaskTypeOrmRepository implements ITaskRepository {
     return this.typeOrmRepo.find();
   }
   async findById(id: string): Promise<Task> {
-    // const objectId = new ObjectId(id);
+    // const objectId = new ObjectId(id);sss
     return await this.typeOrmRepo.findOneOrFail({ where: { id: id } });
+  }
+
+  async findAllByAuthor(email: string): Promise<any> {
+    // const objectId = new ObjectId(id);
+    return await this.typeOrmRepo.find({ where: { author: email } });
   }
 }
